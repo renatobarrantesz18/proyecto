@@ -1,0 +1,123 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL
+========================================= */
+:root {
+    --primary: #102A43;
+    --primary-light: #243F58;
+    --turquoise: #20C9B5;
+    --turquoise-dark: #13A99A;
+    --background: #F3F7FA;
+    --white: #FFFFFF;
+    --text: #243B53;
+    --muted: #8293A5;
+    --border: #DCE5ED;
+    --error: #D9364F;
+    --success: #138A65;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    min-height: 100vh; display: flex; justify-content: center; align-items: center;
+    padding: 30px; font-family: "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(135deg, #EAF1F7, #F8FBFD); color: var(--text);
+}
+/* 2. CONTENEDOR */
+.login-container {
+    width: 100%; max-width: 1000px; min-height: 600px;
+    display: grid; grid-template-columns: 1fr 1fr; background: var(--white);
+    border-radius: 24px; overflow: hidden;
+    box-shadow: 0 25px 70px rgba(16, 42, 67, .13);
+    animation: appear .7s ease;
+}
+/* 3. PANEL IZQUIERDO */
+.welcome-panel {
+    position: relative; overflow: hidden; display: flex; flex-direction: column;
+    justify-content: space-between; padding: 45px;
+    background: linear-gradient(145deg, var(--primary), var(--primary-light)); color: var(--white);
+}
+.brand { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; z-index: 1; }
+.brand-icon {
+    width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+    border-radius: 12px; background: var(--turquoise); color: var(--primary); font-size: 24px; font-weight: 800;
+}
+.brand-light { color: var(--turquoise); }
+.welcome-content { z-index: 1; max-width: 380px; }
+.welcome-label { display: inline-block; margin-bottom: 22px; font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--turquoise); }
+.welcome-content h1 { margin-bottom: 22px; font-size: clamp(30px, 4vw, 46px); line-height: 1.2; letter-spacing: -1px; }
+.welcome-content p { max-width: 320px; color: #CBD8E5; line-height: 1.8; font-size: 14px; }
+.security-info { display: flex; align-items: center; gap: 10px; font-size: 12px; color: #D3E0EA; z-index: 1; }
+.security-icon { width: 23px; height: 23px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(32, 201, 181, .15); color: var(--turquoise); }
+.decoration-circle { position: absolute; border: 1px solid rgba(255,255,255,.08); border-radius: 50%; pointer-events: none; }
+.circle-one { width: 350px; height: 350px; right: -150px; top: 90px; }
+.circle-two { width: 250px; height: 250px; right: -100px; top: 140px; }
+/* 4. PANEL DEL FORMULARIO */
+.form-panel { display: flex; flex-direction: column; justify-content: center; padding: 50px 55px; }
+.form-header { margin-bottom: 35px; }
+.user-icon { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; border-radius: 16px; background: #E8F9F6; font-size: 23px; }
+.form-header h2 { margin-bottom: 10px; color: var(--primary); font-size: 27px; letter-spacing: -.5px; }
+.form-header p { color: var(--muted); font-size: 14px; }
+/* 5. CAMPOS */
+.form-group { margin-bottom: 22px; }
+.form-group label { display: block; margin-bottom: 10px; font-size: 13px; font-weight: 600; color: var(--text); }
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.input-icon { position: absolute; left: 15px; font-size: 16px; color: var(--muted); pointer-events: none; }
+.input-wrapper input {
+    width: 100%; height: 52px; padding: 0 90px 0 45px; border: 1px solid var(--border);
+    border-radius: 12px; outline: none; background: #FBFCFE; color: var(--text); font-size: 14px;
+    transition: border-color .25s, box-shadow .25s;
+}
+.input-wrapper input::placeholder { color: #A4B1BF; }
+.input-wrapper input:focus { border-color: var(--turquoise); background: var(--white); box-shadow: 0 0 0 4px rgba(32,201,181,.12); }
+.toggle-password { position: absolute; right: 12px; border: none; background: transparent; color: var(--turquoise-dark); font-size: 12px; font-weight: 600; cursor: pointer; padding: 8px; }
+.toggle-password:hover { color: var(--primary); }
+.error-message { display: block; min-height: 18px; margin-top: 6px; font-size: 12px; color: var(--error); }
+.input-wrapper input.invalid { border-color: var(--error); background: #FFF9FA; }
+/* 6. OPCIONES */
+.form-options { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin: 4px 0 28px; font-size: 12px; }
+.remember-option { display: flex; align-items: center; gap: 8px; cursor: pointer; color: var(--muted); }
+.remember-option input { width: 15px; height: 15px; accent-color: var(--turquoise-dark); cursor: pointer; }
+.form-options a { color: var(--turquoise-dark); font-weight: 600; text-decoration: none; }
+.form-options a:hover { text-decoration: underline; }
+/* 7. BOTÓN */
+.login-button {
+    width: 100%; height: 54px; display: flex; align-items: center; justify-content: center; gap: 12px;
+    border: none; border-radius: 12px; background: var(--primary); color: var(--white);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: transform .25s, background .25s, box-shadow .25s;
+}
+.login-button:hover { background: #1B4965; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(16,42,67,.2); }
+.login-button:active { transform: translateY(0); }
+.login-button:focus-visible, .toggle-password:focus-visible, .form-options a:focus-visible { outline: 3px solid var(--turquoise); outline-offset: 3px; }
+.button-arrow { color: var(--turquoise); font-size: 20px; transition: transform .25s; }
+.login-button:hover .button-arrow { transform: translateX(4px); }
+/* 8. MENSAJES */
+.form-message { margin-top: 18px; padding: 0; border-radius: 10px; font-size: 13px; line-height: 1.5; text-align: center; }
+.form-message.success { padding: 12px; background: #E8F8F1; color: var(--success); }
+.form-message.error { padding: 12px; background: #FFF0F2; color: var(--error); }
+/* 9. PIE */
+.form-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 40px; padding-top: 20px; border-top: 1px solid #EDF1F5; color: var(--muted); font-size: 10px; }
+/* 10. RESPONSIVE */
+@media (max-width: 850px) {
+    body { padding: 20px; }
+    .login-container { max-width: 520px; grid-template-columns: 1fr; }
+    .welcome-panel { min-height: 260px; padding: 30px; }
+    .welcome-content h1 { font-size: 32px; }
+    .welcome-content p { display: none; }
+    .welcome-label { margin-bottom: 12px; }
+    .security-info { margin-top: 25px; }
+    .form-panel { padding: 40px 35px; }
+}
+@media (max-width: 480px) {
+    body { padding: 12px; }
+    .login-container { border-radius: 18px; }
+    .welcome-panel { min-height: 220px; padding: 25px; }
+    .welcome-content h1 { font-size: 27px; }
+    .form-panel { padding: 30px 22px; }
+    .form-header h2 { font-size: 23px; }
+    .form-options { align-items: flex-start; flex-direction: column; }
+    .form-footer { flex-direction: column; text-align: center; }
+}
+/* 11. ANIMACIÓN Y ACCESIBILIDAD */
+@keyframes appear { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
